@@ -5,37 +5,39 @@
 #include <errno.h>
 #include <string.h>
 
+//============================================================== errno msg
+void checkErr(int err){
+    if (err < 0)
+        printf("error: %d - %s \n", errno, strerror(errno));
+    return;
+}
+//============================================================== gen a rand #
 int randomNumber () {
     int fd = open("/dev/random", O_RDONLY);
-    if (fd == 1) 
-        printf("error: %s \n", errno, strerror(errno));
+    checkErr(fd);
     int n; 
     read (fd,&n,4);
     return n;
 }
-
+//============================================================== read 
 void read_array(char* filename, int arr[10]) {
     int fd = open(filename, O_RDONLY);
-    if (fd == 1) 
-        printf("error: %s \n", errno, strerror(errno));
+    checkErr(fd);
     read(fd,arr,4*10);
-    cl = close(fd);
-    if (cl == 1) 
-        printf("error: %s \n", errno, strerror(errno));
+    int cl = close(fd);
+    checkErr(cl);
     return;
 }
-
+//============================================================== write
 void write_array(char*filename, int arr[10]) {
     int fd = open(filename, O_WRONLY|O_CREAT); 
-    if (fd == 1) 
-        printf("error: %s \n", errno, strerror(errno));
+    checkErr(fd);
     write(fd,arr,4*10);
-    cl = close(fd);
-    if (cl == 1) 
-        printf("error: %s \n", errno, strerror(errno));
+    int cl = close(fd);
+    checkErr(cl);
     return;
 }
-
+//============================================================== main
 int main() {
     int random[10];
     int n;
