@@ -27,17 +27,22 @@ void write_array(char*filename, int arr[10]) {
 int main() {
     int random[10];
     int n;
+    printf("Generating random numbers: \n");
     for (n=0;n<10;n++) {
         random[n] = randomNumber();
         printf("Random %d: %d\n",n,random[n]);
     }
-    
-    write_array("test",random);
+    printf("\n");
+
+    printf("Writing numbers to file... \n\n");
+    write_array("createdfile",random);
     
     int testarray[10]; 
+
+    printf("Reading numbers from file... \n\n");
+    read_array("createdfile",testarray);
     
-    read_array("test",testarray);
-    
+    printf("Verification that written values were the same: \n");
     for (n=0;n<10;n++) {
         printf("New Array %d: %d\n",n,testarray[n]);
     }
