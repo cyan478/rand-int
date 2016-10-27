@@ -6,3 +6,4 @@ run: randfiletest.out
 
 clean:
 	rm randfiletest.out
+	rm createdfile
