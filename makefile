@@ -5,4 +5,4 @@ run: randfiletest.out
 	./randfiletest.out
 
 clean:
-	rm *~
+	rm randfiletest.out
