@@ -1,10 +1,14 @@
-#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
 
 int randomNumber () {
     int fd = open("/dev/random", O_RDONLY);
+    if (fd == 1) 
+        printf("error: %s \n", errno, strerror(errno));
     int n; 
     read (fd,&n,4);
     return n;
@@ -12,15 +16,23 @@ int randomNumber () {
 
 void read_array(char* filename, int arr[10]) {
     int fd = open(filename, O_RDONLY);
+    if (fd == 1) 
+        printf("error: %s \n", errno, strerror(errno));
     read(fd,arr,4*10);
-    close(fd);
+    cl = close(fd);
+    if (cl == 1) 
+        printf("error: %s \n", errno, strerror(errno));
     return;
 }
 
 void write_array(char*filename, int arr[10]) {
     int fd = open(filename, O_WRONLY|O_CREAT); 
+    if (fd == 1) 
+        printf("error: %s \n", errno, strerror(errno));
     write(fd,arr,4*10);
-    close(fd);
+    cl = close(fd);
+    if (cl == 1) 
+        printf("error: %s \n", errno, strerror(errno));
     return;
 }
 
