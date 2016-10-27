@@ -60,4 +60,5 @@ int main() {
     for (n=0;n<10;n++) {
         printf("New Array %d: %d\n",n,testarray[n]);
     }
+    return 0;
 }
